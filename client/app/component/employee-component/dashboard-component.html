@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center"><h1>Employees Listing</h1></div>
+    </div>
+     <div class="row">
+        <div class="col-sm-8 text-left">
+              <div class="search">
+                <input type="text" name="search_text" class="form-control input-sm" maxlength="64" placeholder="Search by name" #searchText>
+                <button type="submit" class="btn btn-primary btn-sm" (click)="searchEmployee(searchText.value)">Search</button>
+                
+              </div>
+              <div class="resetbtn">
+              <button type="submit" class="btn btn-primary btn-sm" (click)="resetAll()">Reset</button>
+              </div>
+        </div> 
+        <div class="col-sm-4 text-right"><a routerLink="/addEmployee" routerLinkActive="active">Add Record</a></div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-border">
+                <tr>
+                    <th>SR No</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+                <tr *ngIf="employees.length == 0 ">
+                    <td colspan="5">No record found</td>
+                </tr>
+                <tr *ngFor="let employee of employees">
+                    <td>{{employee.empid}}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.phone}}</td>
+                    <td>{{employee.email}}</td>
+                    <td>
+                    <button class="btn btn-sm btn-warning" (click)="gotoDetail(employee)"><i class="fa fa-pencil"></i> Detail</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteEmployee(employee)"><i class="fa fa-trash"></i> Delete</button>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>               
+</div>

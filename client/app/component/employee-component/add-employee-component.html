@@ -1,0 +1,73 @@
+<div class="container">
+<div class="col-sm-12 text-right"><button class="btn" type="button" (click)="goBack()">Back</button></div>
+<div *ngIf ="isEmp" class="col-sm-12 text-right"><p>EmpId is already exist.</p></div>
+<!--Form with header-->
+<form novalidate [formGroup]="userForm" (submit)="saveEmployee()" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="empid">Id</label>
+    <input type="text" class="form-control" formControlName="empid" id="empid" placeholder="Enter employee id">    
+    <control-messages [control]="userForm.controls.empid"></control-messages>
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter name">    
+    <control-messages [control]="userForm.controls.name"></control-messages>
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="text" class="form-control" formControlName="phone" id="phone" placeholder="Enter phone number">    
+    <control-messages [control]="userForm.controls.phone"></control-messages>
+  </div>
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" class="form-control" formControlName="email" id="email" placeholder="Enter email">
+     <control-messages [control]="userForm.controls.email"></control-messages>
+  </div>
+  <div class="form-group">
+    <label for="photo">Profile Image</label>
+    <input type="file" class="" formControlName="photo" id="photo">
+     <control-messages [control]="userForm.controls.photo"></control-messages>
+  </div>
+  <fieldset class="form-group">
+    <legend>Marital Status</legend>
+    <div class="form-check">
+      <label class="form-check-label" *ngFor="let marry of marital">
+        <input type="radio" class="form-check-input" formControlName="marital_status" id="{{marry}}" value="{{marry}}" >
+        {{marry | uppercase}}
+      </label>      
+    </div>
+    <control-messages [control]="userForm.controls.marital_status"></control-messages>    
+  </fieldset>
+  
+  <div class="form-group">
+    <label for="state">State</label>
+    <select class="form-control" formControlName="state" id="state">
+      <option value="">Please select</option>
+      <option value="mh">MH</option>
+      <option value="mp">MP</option>
+      <option value="up">UP</option>
+      <option value="punjab">Punjab</option>
+      <option value="gujrat">Gujrat</option>
+    </select>
+    <control-messages [control]="userForm.controls.state"></control-messages>
+  </div> 
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <select class="form-control" formControlName="city" id="city">
+      <option value="">Please select</option>
+      <option value="nagpur">Nagpur</option>
+      <option value="mumbai">Mumbai</option>
+      <option value="kanpur">Kanpur</option>
+      <option value="amritsar">Amritsar</option>
+      <option value="rajkot">rajkot</option>
+      <option value="bhopal">Bhopal</option>
+    </select>
+    <control-messages [control]="userForm.controls.city"></control-messages>
+  </div>  
+  
+  <button type="submit" [disabled]="!userForm.valid" class="btn btn-primary">Submit</button>
+  <button class="btn btnreset" type="button" (click)="resetform()">Reset</button>
+</form>
+<!--/Form with header-->
+</div>
